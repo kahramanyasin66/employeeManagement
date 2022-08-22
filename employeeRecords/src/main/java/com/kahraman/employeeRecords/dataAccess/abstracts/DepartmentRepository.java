@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.kahraman.employeeRecords.entities.concretes.Department;
 
-public interface DepartmentRepository extends JpaRepository<Department, Integer>{
-
+public interface DepartmentRepository extends JpaRepository<Department, Integer> {
+	
+	Department findById(int id);
+	
 }

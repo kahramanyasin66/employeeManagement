@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -33,5 +35,9 @@ public class Payroll {
 	
 	@Column(name="salary")	
 	private double salary;
+	
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 
 }

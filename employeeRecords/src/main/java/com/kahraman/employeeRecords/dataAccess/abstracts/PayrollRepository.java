@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.kahraman.employeeRecords.entities.concretes.Payroll;
 
-public interface PayrollRepository  extends JpaRepository<Payroll, Integer>{
+public interface PayrollRepository extends JpaRepository<Payroll, Integer> {
 
+	Payroll findById(int id);
+	
 }

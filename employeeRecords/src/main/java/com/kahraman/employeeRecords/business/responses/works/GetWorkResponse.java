@@ -1,4 +1,4 @@
-package com.kahraman.employeeRecords.business.responses.payrolls;
+package com.kahraman.employeeRecords.business.responses.works;
 
 import java.time.LocalDate;
 
@@ -9,13 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetPayrollResponse {
+public class GetWorkResponse {
 
-	private LocalDate creatingDate;
+	private LocalDate startedDate;
 
-	private String registrationNumber;
-
-	private double salary;
+	private LocalDate dueDate;
 
 	private int employeeId;
 
