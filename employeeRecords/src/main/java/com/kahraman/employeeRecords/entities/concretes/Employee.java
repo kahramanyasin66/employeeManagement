@@ -1,76 +1,67 @@
 package com.kahraman.employeeRecords.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import com.kahraman.employeeRecords.entities.abstracts.Entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-public class Employee implements Entity {
-	
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "employees")
+public class Employee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
+
+	@Column(name = "first_name")
 	private String firstName;
+
+	@Column(name = "last_name")
 	private String lastName;
+
+	@Column(name = "identity_number")
 	private String identityNumber;
+
+	@Column(name = "email")
 	private String email;
-	private LocalDate startedDate; // işe başlama tarihi 
-	private LocalDate dueDate;
-	public Employee() {
-		
-	}
-	public Employee(int id, String firstName, String lastName, String identityNumber, String email,
-			LocalDate startedDate, LocalDate dueDate) {
-		
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.identityNumber = identityNumber;
-		this.email = email;
-		this.startedDate = startedDate;
-		this.dueDate = dueDate;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getIdentityNumber() {
-		return identityNumber;
-	}
-	public void setIdentityNumber(String identityNumber) {
-		this.identityNumber = identityNumber;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public LocalDate getStartedDate() {
-		return startedDate;
-	}
-	public void setStartedDate(LocalDate startedDate) {
-		this.startedDate = startedDate;
-	}
-	public LocalDate getDueDate() {
-		return dueDate;
-	}
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate = dueDate;
-	}
+
+	@Column(name = "birth_date")
+	private LocalDate birthDate;
+
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
+
+	@ManyToOne
+	@JoinColumn(name = "employment_id")
+	private Employment employment;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Payroll> payrolls;
 	
+	@OneToMany(mappedBy = "employee")
+	private List<Work> works;	
 	
-	
+	@OneToMany(mappedBy = "employee")
+	private List<Winner> winners;
 
 }
